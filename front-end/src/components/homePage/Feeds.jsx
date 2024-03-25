@@ -7,7 +7,7 @@ const Feeds = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("");
+        const response = await axios.get("https:localHost::123");
         setPosts(response.data);
       } catch (error) {
         console.error(error);
@@ -15,8 +15,7 @@ const Feeds = () => {
     };
 
     fetchPosts();
-  }, []);
-
+  }, []); 
   return (
     <div>
       {posts.length > 0 ? (

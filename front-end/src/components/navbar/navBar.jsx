@@ -10,11 +10,13 @@ import message from "./../../assets/message.svg";
 
 const navBar = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white g">
       <div className="navBar  flex flex-row w-100 fixed items-center">
         <img className="sm-logo" src={Logo} alt="" />
         <div className="h-full bg-baby-blue flex items-center">
-          <img className="search-icon bg-baby-blue" src={searchIcon} alt="" />
+          <div className="b">
+            <img className="search-icon bg-baby-blue" src={searchIcon} alt="" />
+          </div>
           <input className="search-box"></input>
         </div>
 

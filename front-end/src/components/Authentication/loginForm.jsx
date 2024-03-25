@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./../../Styles/utilities.css";
 import "./../../Styles/Authentication.css";
-import "./../../Styles/utilities.css";
 import linkedinlogo from "./../../assets/linkedin-logo.svg";
 import article from "./../../assets/article.svg";
 import bag from "./../../assets/bag.svg";
@@ -10,7 +10,28 @@ import learning from "./../../assets/learning.svg";
 import peoples from "./../../assets/people.svg";
 import loginImg from "./../../assets/login-image.svg";
 
-const loginComponent = ({ signup, setSignup }) => {
+const LoginComponent = () => {
+  const [emailPhone, setEmailPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+
+  const handleLoginSignupSwitch = () => {
+    setIsLogin(!isLogin);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("", {
+        emailPhone,
+        password,
+        isLogin,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="nav flex .flex-row">
@@ -41,31 +62,50 @@ const loginComponent = ({ signup, setSignup }) => {
             </li>
           </ul>
         </div>
-        <button className="nav__cta-container"> Join now </button>
+
+        <button
+          className="nav__cta-container"
+          onClick={handleLoginSignupSwitch}
+        >
+          {isLogin ? "Sign Up" : "Log In"}
+        </button>
       </div>
       <div className="section-1 pt-5 flex flex-row ">
         <div className="leftSide">
-          <div className="text-1">Welcome to your professional community</div>
+          <div className="text-1">
+            {isLogin ? "Log In to your account" : "Sign Up for an account"}
+          </div>
           <div className="loginForm">
             <div className="username mt-2">
               <div className="text-2">Email or phone</div>
-              <input className="inp"></input>
+              <input
+                className="inp"
+                value={emailPhone}
+                onChange={(e) => setEmailPhone(e.target.value)}
+              />
             </div>
             <div className="password mt-2  ">
               <div className="text-2">Password</div>
               <div className="flex flex-row pass-input">
-                <input className="pass-inp" type="password" />
-                <button>Show </button>
+                <input
+                  className="pass-inp"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button>Show</button>
               </div>
             </div>
           </div>
-          <div className="text-3 pt-3">Forgot password?</div>
-          <button class="log">Login</button>
+          {isLogin && <div className="text-3 pt-3">Forgot password?</div>}
+          <button onClick={handleSubmit} className="loginBtn">
+            {isLogin ? "Log In" : "Sign Up"}
+          </button>
         </div>
-        <img src={loginImg} alt="" />
+        <img src={loginImg} alt="login" />
       </div>
     </>
   );
 };
 
-export default loginComponent;
+export default LoginComponent;

@@ -8,8 +8,10 @@ const Home = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <Left></Left>
-     <Feed></Feed>
+      <div className="flex">
+        <Left></Left>
+        <Feed></Feed>
+      </div>
       <div className="rightside"></div>
     </div>
   );

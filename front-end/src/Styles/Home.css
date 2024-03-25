@@ -11,6 +11,13 @@
   margin-left: 110px;
 }
 
+.home-left {
+  width: 30%;
+}
+.home-feed {
+  background-color: red;
+}
+
 .feed {
   background-color: white;
 }

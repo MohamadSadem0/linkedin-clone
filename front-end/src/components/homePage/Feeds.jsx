@@ -15,27 +15,30 @@ const Feeds = () => {
     };
 
     fetchPosts();
-  }, []); 
+  }, []);
 
   return (
     <div>
-        
-      {posts.map(({ username, description, image, likes }, index) => (
-        <div key={index} className="feed">
-          <div className="username">{username}</div>
-          <div className="post-description">{description}</div>
-          <img className="post-img" src={image} alt="Post" />
-          <div className="likes">Likes: {likes}</div>
-          <div>
-            <ul>
-              <li>like</li>
-              <li>comment</li>
-              <li>repost</li>
-              <li>send</li>
-            </ul>
+      {posts.length > 0 ? (
+        posts.map(({ username, description, image, likes }, index) => (
+          <div key={index} className="feed">
+            <div className="username">{username}</div>
+            <div className="post-description">{description}</div>
+            <img className="post-img" src={image} alt="Post" />
+            <div className="likes">Likes: {likes}</div>
+            <div>
+              <ul>
+                <li>like</li>
+                <li>comment</li>
+                <li>repost</li>
+                <li>send</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No posts available</p>
+      )}
     </div>
   );
 };

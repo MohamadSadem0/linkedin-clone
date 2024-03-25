@@ -19,6 +19,7 @@ const Feeds = () => {
 
   return (
     <div>
+        
       {posts.map(({ username, description, image, likes }, index) => (
         <div key={index} className="feed">
           <div className="username">{username}</div>
